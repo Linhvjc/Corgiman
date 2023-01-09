@@ -10,3 +10,9 @@ def train_table():
 
 def user_table():
     return connection["chatbot"]["user"]
+
+def message_table():
+    return connection["chatbot"]["message"]
+
+if __name__ == '__main__':
+    print('db')

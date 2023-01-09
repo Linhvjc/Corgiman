@@ -78,11 +78,12 @@ def get_response(intents_list, intents_json):
     #         break
     # return result
 
-print("Go! Bot is running")
+# print("Go! Bot is running")
 
-while True:
+def chat(message):
+# while True:
     # input message 
-    message = input("You: ")
+    # message = input("You: ")
     # predict class
     ints = predict_class(message)
     # get response
@@ -90,8 +91,12 @@ while True:
     time = strftime('%H:%M:%S:%p, Date: %d/%m/%Y')
     print("Bot: " + res)
     # check = say(res)
-    engine.say(res)
-    engine.runAndWait()
-    with open(current_path+'/data/history.csv', 'a') as f:
-        writer = csv.writer(f)
-        writer.writerow([f'{message}', f'{res}', f'{time}'])
+    # engine.say(res)
+    # engine.runAndWait()
+    # with open(current_path+'/data/history.csv', 'a') as f:
+    #     writer = csv.writer(f)
+    #     writer.writerow([f'{message}', f'{res}', f'{time}'])
+    return res
+
+if __name__ == '__main__':
+    chat('hello')
