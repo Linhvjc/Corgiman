@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %} Admin {% endblock %}
+
+{% block link %}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container-main">
+    <!-- Tab items -->
+    <div class="tabs">
+        <div class="tab-item active">
+            <i class="tab-icon fas fa-code"></i>
+            Users
+        </div>
+        <div class="tab-item">
+            <i class="tab-icon fas fa-cog"></i>
+            Angular
+        </div>
+        <div class="tab-item">
+            <i class="tab-icon fas fa-plus-circle"></i>
+            Ember
+        </div>
+        <div class="tab-item">
+            <i class="tab-icon fas fa-pen-nib"></i>
+            Train data
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <!-- Tab content -->
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <h2>User table</h2>
+            <div class="tableFixHead">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Birthday</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in user_data %}
+                        <tr>
+                            <td scope="row" style="color: #666666;">{{ x['username'] }}</td>
+                            <td>{{ x['password'] }}</td>
+                            <td>{{ x['birthday'] }}</td>
+                            <td>{{ x['address'] }}</td>
+                            <td>{{ x['phone'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane">
+            <h2>Angular</h2>
+            <p>Angular is an application design framework and development platform for creating efficient and
+                sophisticated single-page apps.</p>
+        </div>
+        <div class="tab-pane">
+            <h2>Ember</h2>
+            <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It
+                includes everything you need to build rich UIs that work on any device.</p>
+        </div>
+        <div class="tab-pane">
+            <h2>Train data</h2>
+            <div class="tableFixHead">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tag</th>
+                            <th scope="col">Patterns</th>
+                            <th scope="col">Responses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in train_data %}
+                        <tr>
+                            <td scope="row" style="color: #666666;">{{ x['tag'] }}</td>
+                            <td>
+                                {% for y in x['patterns'] %}
+                                <p>{{ y }}</p>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for y in x['responses'] %}
+                                <p>{{ y }}</p>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    const tabs = $$('.tab-item');
+    const panes = $$('.tab-pane');
+
+    const tabActive = $('.tab-item.active');
+    const line = $('.tabs .line');
+
+    line.style.left = tabActive.offsetLeft + 'px';
+    line.style.width = tabActive.offsetWidth + 'px';
+
+    tabs.forEach((tab, index) => {
+        const pane = panes[index];
+        tab.onclick = function () {
+            $('.tab-item.active').classList.remove('active');
+            $('.tab-pane.active').classList.remove('active');
+
+            line.style.left = tab.offsetLeft + 'px';
+            line.style.width = tab.offsetWidth + 'px';
+
+            this.classList.add('active');
+            pane.classList.add('active');
+        }
+    })
+</script>
+{% endblock %}

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, get_template_attribute, redirect, url_for, jsonify, stream_template 
 from markupsafe import escape
 from db import user_table, train_table
-from handle import authentication, get_message_response, store_message, get_message_database, add_block_message
+from handle import authentication, get_message_response, store_message, get_message_database, add_block_message, get_all_user_info, get_all_train_data
 from chatbot import chat
 import time
 from flask_socketio import SocketIO, send
@@ -41,10 +41,12 @@ def login():
         username = request.form['username']
         password = request.form['password']
         if authentication(username, password):
-            session['message'] = ''
             session['username'] = username
             session['password'] = password
-            return redirect(url_for("main"))
+            if username == 'admin':
+                return redirect(url_for("admin"))
+            else:
+                return redirect(url_for("main"))
         else:
             return render_template('auth/login.html', message = 'Wrong username or password')
     else:
@@ -65,15 +67,24 @@ def register():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
+        birthday = request.form['birthday']
+        address = request.form['address']
+        phone = request.form['phone']
         
         user_collection.insert_one({
             "username": username,
-            "password": password
+            "password": password,
+            "birthday": birthday,
+            "address": address,
+            "phone": phone
         })
         return redirect(url_for("login"))
     else:
         return render_template('auth/register.html')
-    
+
+@app.route('/admin', methods=["POST", "GET"])
+def admin():
+    return render_template('admin.html', user_data = get_all_user_info(), train_data = get_all_train_data())
 
 if __name__ == '__main__':
     socketio.run(app, host="localhost")

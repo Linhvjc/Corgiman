@@ -5,6 +5,7 @@ from datetime import datetime
 
 user_collection = user_table()
 message_collection = message_table()
+train_collection = train_table()
 
 def authentication(username, password):
     for x in user_collection.find():
@@ -54,6 +55,12 @@ def add_block_message(message, response):
                                 </div>
                             </div>
 """
+
+def get_all_user_info():
+    return user_collection.find()
+
+def get_all_train_data():
+    return train_collection.find()
 
 if __name__ == '__main__':
     print('handle')
