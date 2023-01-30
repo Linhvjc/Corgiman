@@ -14,5 +14,8 @@ def user_table():
 def message_table():
     return connection["chatbot"]["message"]
 
+def message_no_response_table():
+    return connection["chatbot"]["message_no_response"]
+
 if __name__ == '__main__':
     print('db')

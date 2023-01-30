@@ -10,35 +10,37 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/6c08e0fb05.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
 {% endblock %}
 
 {% block content %}
+
 <div class="container-main">
     <!-- Tab items -->
     <div class="tabs">
-        <div class="tab-item active">
+        <div class="tab-item">
             <i class="tab-icon fas fa-code"></i>
             Users
         </div>
         <div class="tab-item">
             <i class="tab-icon fas fa-cog"></i>
-            Angular
-        </div>
-        <div class="tab-item">
-            <i class="tab-icon fas fa-plus-circle"></i>
-            Ember
+            Message to answer
         </div>
         <div class="tab-item">
             <i class="tab-icon fas fa-pen-nib"></i>
             Train data
+        </div>
+        <div class="tab-item">
+            <i class="tab-icon fas fa-plus-circle"></i>
+            Ember
         </div>
         <div class="line"></div>
     </div>
 
     <!-- Tab content -->
     <div class="tab-content">
-        <div class="tab-pane active">
+        <div class="tab-pane">
             <h2>User table</h2>
             <div class="tableFixHead">
                 <table class="table mb-0">
@@ -49,6 +51,8 @@
                             <th scope="col">Birthday</th>
                             <th scope="col">Address</th>
                             <th scope="col">Phone number</th>
+                            <th scope="col">Last login</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +63,14 @@
                             <td>{{ x['birthday'] }}</td>
                             <td>{{ x['address'] }}</td>
                             <td>{{ x['phone'] }}</td>
+                            <td>{{ x['last_login'] }}</td>
+                            <td>
+                                {% if x['username'] != 'admin' %}
+                                <form action="" method="POST">
+                                    <button type="submit" name="delete_user" value="{{ x['username'] }}">Delete</button>
+                                </form>
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -66,14 +78,40 @@
             </div>
         </div>
         <div class="tab-pane">
-            <h2>Angular</h2>
-            <p>Angular is an application design framework and development platform for creating efficient and
-                sophisticated single-page apps.</p>
-        </div>
-        <div class="tab-pane">
-            <h2>Ember</h2>
-            <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It
-                includes everything you need to build rich UIs that work on any device.</p>
+            <h2>Message to answer</h2>
+            <div class="tableFixHead">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Message</th>
+                            <th scope="col">Tag</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in message_to_answer_data %}
+                        <tr>
+                            <form action="" method="post">
+                                <td>{{ x['message'] }}</td>
+                                <td>
+                                    <select name="tag_message_to_answer" id="">
+                                        {% autoescape off %}
+                                        {{ tag_data }}
+                                        {% endautoescape %}
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="submit" name="btn_delete_message_to_answer"
+                                        value="{{ x['message'] }}">Delete</button>
+                                    <button type="submit" name="btn_add_message_to_answer"
+                                        value="{{ x['message'] }}">Add</button>
+                                </td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane">
             <h2>Train data</h2>
@@ -89,51 +127,143 @@
                     <tbody>
                         {% for x in train_data %}
                         <tr>
-                            <td scope="row" style="color: #666666;">{{ x['tag'] }}</td>
+                            <td scope="row" style="color: #666666;">
+                                <form action="" method="post">
+                                    <button name="delete_tag" value="{{ x['tag'] }}"
+                                        style="cursor: pointer;border: none; background-color: transparent;">
+                                        <i class="fa-solid fa-xmark"></i></i></button>
+                                    <span>{{ x['tag'] }}</span>
+                                </form>
+                            </td>
                             <td>
                                 {% for y in x['patterns'] %}
-                                <p>{{ y }}</p>
+                                <form action="" method="post">
+                                    <button name="delete_pattern" value="{{ y }};_;{{ x['tag'] }}"
+                                        style="cursor: pointer;border: none; background-color: transparent;"><i
+                                            class="fa-solid fa-xmark"></i></i></button>
+                                    <p style="display: inline-block;">{{ y }}</p>
+                                </form>
                                 {% endfor %}
+                                <form action="" method="post">
+                                    <input name="add_pattern" type="text" placeholder="Add new pattern">
+                                    <button type="submit" name="tag_to_add_pattern" value="{{ x['tag'] }}">Add</button>
+                                </form>
                             </td>
                             <td>
                                 {% for y in x['responses'] %}
-                                <p>{{ y }}</p>
+                                <form action="" method="post">
+                                    <button name="delete_response" value="{{ y }};_;{{ x['tag'] }}"
+                                        style="cursor: pointer;border: none; background-color: transparent;"><i
+                                            class="fa-solid fa-xmark"></i></i></button>
+                                    <p style="display: inline-block;">{{ y }}</p>
+                                </form>
                                 {% endfor %}
+                                <form action="" method="post">
+                                    <input name="add_response" type="text" placeholder="Add new response">
+                                    <button type="submit" name="tag_to_add_response" value="{{ x['tag'] }}">Add</button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}
+                        <tr>
+                            <td>
+                                <form action="" method="post">
+                                    <input name="add_tag" type="text" placeholder="Add new tag">
+                                    <button type="submit" name="test" value="hi">Add</button>
+                                </form>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <div class="tab-pane">
+            <h2>Ember</h2>
+            <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It
+                includes everything you need to build rich UIs that work on any device.</p>
+        </div>
     </div>
 </div>
+<form method="post" action="logout">
+    <input style="position: absolute; top: 10px; right: 10px;" type="submit" value="Log out">
+</form>
 
 <script>
-    const $ = document.querySelector.bind(document);
-    const $$ = document.querySelectorAll.bind(document);
+    window.onload = function () {
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
 
-    const tabs = $$('.tab-item');
-    const panes = $$('.tab-pane');
-
-    const tabActive = $('.tab-item.active');
-    const line = $('.tabs .line');
-
-    line.style.left = tabActive.offsetLeft + 'px';
-    line.style.width = tabActive.offsetWidth + 'px';
-
-    tabs.forEach((tab, index) => {
-        const pane = panes[index];
-        tab.onclick = function () {
-            $('.tab-item.active').classList.remove('active');
-            $('.tab-pane.active').classList.remove('active');
-
-            line.style.left = tab.offsetLeft + 'px';
-            line.style.width = tab.offsetWidth + 'px';
-
-            this.classList.add('active');
-            pane.classList.add('active');
+        const tabs = $$('.tab-item');
+        const panes = $$('.tab-pane');
+        // Get last action
+        const start = localStorage.getItem("Last_action");
+        // If start is a value
+        if (start) {
+            const end = Date.now();
+            // if last modify > 1 hour
+            if (end - start > 3600000) {
+                tabs[0].classList.add('active');
+                panes[0].classList.add('active');
+                localStorage.setItem(`tab_${0}`, true);
+                localStorage.setItem(`pane_${0}`, true);
+                for (let i = 1; i < 4; i++) {
+                    localStorage.setItem(`tab_${i}`, false);
+                    localStorage.setItem(`pane_${i}`, false);
+                }
+            } else {
+                for (let i = 0; i < 4; i++) {
+                    var check = localStorage.getItem(`tab_${i}`);
+                    // console.log(check )
+                    if (check == 'true') {
+                        tabs[i].classList.add('active');
+                        panes[i].classList.add('active');
+                    }
+                }
+            }
+        } else {
+            tabs[0].classList.add('active');
+            panes[0].classList.add('active');
         }
-    })
+
+        const tabActive = $('.tab-item.active');
+        const line = $('.tabs .line');
+
+        line.style.left = tabActive.offsetLeft + 'px';
+        line.style.width = tabActive.offsetWidth + 'px';
+
+        tabs.forEach((tab, index) => {
+            const pane = panes[index];
+            tab.onclick = function () {
+                $('.tab-item.active').classList.remove('active');
+                $('.tab-pane.active').classList.remove('active');
+
+                line.style.left = tab.offsetLeft + 'px';
+                line.style.width = tab.offsetWidth + 'px';
+
+                this.classList.add('active');
+                pane.classList.add('active');
+
+                // Save in local
+
+                // Set Item
+                localStorage.setItem(`tab_${index}`, true);
+                localStorage.setItem(`pane_${index}`, true);
+                const start = Date.now();
+                localStorage.setItem('Last_action', start)
+
+                // Check other and set False
+                for (let i = 0; i < 4; i++) {
+                    if (i != index) {
+                        localStorage.setItem(`tab_${i}`, false);
+                        localStorage.setItem(`pane_${i}`, false);
+                    }
+                }
+            }
+        })
+    }
+
+
 </script>
 {% endblock %}

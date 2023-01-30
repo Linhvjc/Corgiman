@@ -15,7 +15,8 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
-<!-- <link rel="stylesheet" href="./../static/main.css"> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/6c08e0fb05.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
     integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
@@ -30,6 +31,15 @@
 {% block content %}
 
 <script type="text/javascript">
+    // convert text to speech
+    function speak(message) {
+        var msg = new SpeechSynthesisUtterance(message)
+        var voices = window.speechSynthesis.getVoices()
+        msg.voice = voices[0]
+        window.speechSynthesis.speak(msg)
+    }
+
+    // realtime message using socket
     $(document).ready(function () {
         var socket = io.connect("http://localhost:5000")
         socket.on('connect', function () {
@@ -39,8 +49,10 @@
         socket.on('message', function (data) {
             if (data) {
                 if (data == 'User connected!') {
+                    // scroll when begin conversation
                     $('#messages').scrollTop($('#messages')[0].scrollHeight);
                 } else {
+                    // add data to interface and speak
                     receive = data.split(';')
                     $('#messages').append(receive[0])
                     setTimeout(function () { }, 500);
@@ -49,10 +61,13 @@
                     $('#messages').append(receive[1])
                     setTimeout(function () { }, 500);
                     $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                    speak_tail = receive[1].split('<div class="msg_cotainer">')
+                    speak_result = speak_tail[1].split('<span')[0]
+                    speak(speak_result)
                 }
             }
         })
-
+        // get value and send to sever
         $('#sendBtn').on('click', function () {
             socket.send($('#message').val())
             $('#message').val('')
@@ -67,6 +82,7 @@
     <div class="row justify-content-center h-100">
         <div class="col-md-8 col-xl-6 chat">
             <div class="card">
+                <!-- ? Header of the conversation -->
                 <div class="card-header msg_head">
                     <div class="d-flex bd-highlight">
                         <div class="img_cont">
@@ -75,7 +91,7 @@
                             <span class="online_icon"></span>
                         </div>
                         <div class="user_info">
-                            <span>Chat with {{ name }}</span>
+                            <span>Corgiman</span>
                             <p>1767 Messages</p>
                         </div>
                         <div class="video_cam">
@@ -93,6 +109,7 @@
                         </ul>
                     </div>
                 </div>
+                <!--? Body of conversation  -->
                 <div class="card-body msg_card_body" id="messages">
                     <div class="d-flex justify-content-start mb-4">
                         <div class="img_cont_msg">
@@ -133,9 +150,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="input-group">
-                        <div class="input-group-append">
-                            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
-                        </div>
+                        <button class="input-group-append" onclick="runSpeechRecognition()">
+                            <span class="input-group-text attach_btn"><i class="fa-solid fa-microphone"></i></span>
+                        </button>
                         <input type="text" id="message" class="form-control type_msg" placeholder="Type your message..."
                             autofocus></input>
                         <button id="sendBtn" class="input-group-append">
@@ -152,5 +169,37 @@
 </form>
 <!-- <script src="./../static/main.js"></script> -->
 <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+<script>
+    /* JS comes here */
+    function runSpeechRecognition() {
+        // get output div reference
+        var output = document.getElementById("message");
+        // new speech recognition object
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+
+        // This runs when the speech recognition service starts
+        recognition.onstart = function () {
+            // action.innerHTML = "<small>listening, please speak...</small>";
+        };
+
+        recognition.onspeechend = function () {
+            // action.innerHTML = "<small>stopped listening, hope you are done...</small>";
+            recognition.stop();
+        }
+
+        // This runs when the speech recognition service returns result
+        recognition.onresult = function (event) {
+            var transcript = event.results[0][0].transcript;
+            // var confidence = event.results[0][0].confidence;
+            output.value = transcript
+            document.getElementById("sendBtn").click();
+        };
+
+        // start recognition
+        recognition.start();
+    }
+</script>
 
 {% endblock %}
