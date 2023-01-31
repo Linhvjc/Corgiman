@@ -132,5 +132,7 @@ def remove_response(tag, response_delete):
     
     train_collection.update_one({"tag": tag}, {"$set": {"responses": new_arr}})
     
+def check_username_exist(username):
+    return user_collection.count_documents({"username": username}) > 0
 if __name__ == '__main__':
     print()

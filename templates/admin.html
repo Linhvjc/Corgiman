@@ -12,183 +12,209 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/6c08e0fb05.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+
+<style>
+    body {
+        height: 100vh;
+    }
+    .bg-image {
+        /* background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp'); */
+        /* fallback for old browsers */
+        background: #84fab0;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+    }
+</style>
 {% endblock %}
 
 {% block content %}
+<section style="height: 100%; width: 100%;" class="bg-image">
 
-<div class="container-main">
-    <!-- Tab items -->
-    <div class="tabs">
-        <div class="tab-item">
-            <i class="tab-icon fas fa-code"></i>
-            Users
-        </div>
-        <div class="tab-item">
-            <i class="tab-icon fas fa-cog"></i>
-            Message to answer
-        </div>
-        <div class="tab-item">
-            <i class="tab-icon fas fa-pen-nib"></i>
-            Train data
-        </div>
-        <div class="tab-item">
-            <i class="tab-icon fas fa-plus-circle"></i>
-            Ember
-        </div>
-        <div class="line"></div>
-    </div>
-
-    <!-- Tab content -->
-    <div class="tab-content">
-        <div class="tab-pane">
-            <h2>User table</h2>
-            <div class="tableFixHead">
-                <table class="table mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col">Username</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Birthday</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Phone number</th>
-                            <th scope="col">Last login</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for x in user_data %}
-                        <tr>
-                            <td scope="row" style="color: #666666;">{{ x['username'] }}</td>
-                            <td>{{ x['password'] }}</td>
-                            <td>{{ x['birthday'] }}</td>
-                            <td>{{ x['address'] }}</td>
-                            <td>{{ x['phone'] }}</td>
-                            <td>{{ x['last_login'] }}</td>
-                            <td>
-                                {% if x['username'] != 'admin' %}
-                                <form action="" method="POST">
-                                    <button type="submit" name="delete_user" value="{{ x['username'] }}">Delete</button>
-                                </form>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+    <div class="container-main" style="background-color: #fff; border-radius: 30px;">
+        <!-- Tab items -->
+        <div class="tabs">
+            <div class="tab-item" style="border-radius: 30px;">
+                <i class="tab-icon fas fa-code"></i>
+                Users
             </div>
+            <div class="tab-item">
+                <i class="tab-icon fas fa-cog"></i>
+                Message to answer
+            </div>
+            <div class="tab-item">
+                <i class="tab-icon fas fa-pen-nib"></i>
+                Train data
+            </div>
+            <div class="tab-item">
+                <i class="tab-icon fas fa-plus-circle"></i>
+                Ember
+            </div>
+            <div class="line"></div>
         </div>
-        <div class="tab-pane">
-            <h2>Message to answer</h2>
-            <div class="tableFixHead">
-                <table class="table mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col">Message</th>
-                            <th scope="col">Tag</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for x in message_to_answer_data %}
-                        <tr>
-                            <form action="" method="post">
-                                <td>{{ x['message'] }}</td>
+
+        <!-- Tab content -->
+        <div class="tab-content" style="padding: 24px;">
+            <div class="tab-pane">
+                <h2>User table</h2>
+                <div class="tableFixHead">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Birthday</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Phone number</th>
+                                <th scope="col">Last login</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in user_data %}
+                            <tr>
+                                <td scope="row" style="color: #666666;">{{ x['username'] }}</td>
+                                <td>{{ x['password'] }}</td>
+                                <td>{{ x['birthday'] }}</td>
+                                <td>{{ x['address'] }}</td>
+                                <td>{{ x['phone'] }}</td>
+                                <td>{{ x['last_login'] }}</td>
                                 <td>
-                                    <select name="tag_message_to_answer" id="">
-                                        {% autoescape off %}
-                                        {{ tag_data }}
-                                        {% endautoescape %}
-                                    </select>
+                                    {% if x['username'] != 'admin' %}
+                                    <form action="" method="POST">
+                                        <button type="submit" name="delete_user"
+                                            value="{{ x['username'] }}">Delete</button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane">
+                <h2>Message to answer</h2>
+                <div class="tableFixHead">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Message</th>
+                                <th scope="col">Tag</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in message_to_answer_data %}
+                            <tr>
+                                <form action="" method="post">
+                                    <td>{{ x['message'] }}</td>
+                                    <td>
+                                        <select name="tag_message_to_answer" id="">
+                                            {% autoescape off %}
+                                            {{ tag_data }}
+                                            {% endautoescape %}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="submit" name="btn_delete_message_to_answer"
+                                            value="{{ x['message'] }}">Delete</button>
+                                        <button type="submit" name="btn_add_message_to_answer"
+                                            value="{{ x['message'] }}">Add</button>
+                                    </td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane">
+                <h2>Train data</h2>
+                <div class="tableFixHead">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tag</th>
+                                <th scope="col">Patterns</th>
+                                <th scope="col">Responses</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in train_data %}
+                            <tr>
+                                <td scope="row" style="color: #666666;">
+                                    <form action="" method="post">
+                                        <button name="delete_tag" value="{{ x['tag'] }}"
+                                            style="cursor: pointer;border: none; background-color: transparent;">
+                                            <i class="fa-solid fa-xmark"></i></i></button>
+                                        <span>{{ x['tag'] }}</span>
+                                    </form>
                                 </td>
                                 <td>
-                                    <button type="submit" name="btn_delete_message_to_answer"
-                                        value="{{ x['message'] }}">Delete</button>
-                                    <button type="submit" name="btn_add_message_to_answer"
-                                        value="{{ x['message'] }}">Add</button>
+                                    {% for y in x['patterns'] %}
+                                    <form action="" method="post">
+                                        <button name="delete_pattern" value="{{ y }};_;{{ x['tag'] }}"
+                                            style="cursor: pointer;border: none; background-color: transparent;"><i
+                                                class="fa-solid fa-xmark"></i></i></button>
+                                        <p style="display: inline-block;">{{ y }}</p>
+                                    </form>
+                                    {% endfor %}
+                                    <form action="" method="post">
+                                        <input name="add_pattern" type="text" placeholder="Add new pattern">
+                                        <button type="submit" name="tag_to_add_pattern"
+                                            value="{{ x['tag'] }}">Add</button>
+                                    </form>
                                 </td>
-                            </form>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                <td>
+                                    {% for y in x['responses'] %}
+                                    <form action="" method="post">
+                                        <button name="delete_response" value="{{ y }};_;{{ x['tag'] }}"
+                                            style="cursor: pointer;border: none; background-color: transparent;"><i
+                                                class="fa-solid fa-xmark"></i></i></button>
+                                        <p style="display: inline-block;">{{ y }}</p>
+                                    </form>
+                                    {% endfor %}
+                                    <form action="" method="post">
+                                        <input name="add_response" type="text" placeholder="Add new response">
+                                        <button type="submit" name="tag_to_add_response"
+                                            value="{{ x['tag'] }}">Add</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td>
+                                    <form action="" method="post">
+                                        <input name="add_tag" type="text" placeholder="Add new tag">
+                                        <button type="submit" name="test" value="hi">Add</button>
+                                    </form>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <form method="post" action="" style="margin-top: 10px;">
+                    <button class="btn btn-primary" name="training">Start training data</button>
+                </form>
             </div>
-        </div>
-        <div class="tab-pane">
-            <h2>Train data</h2>
-            <div class="tableFixHead">
-                <table class="table mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col">Tag</th>
-                            <th scope="col">Patterns</th>
-                            <th scope="col">Responses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for x in train_data %}
-                        <tr>
-                            <td scope="row" style="color: #666666;">
-                                <form action="" method="post">
-                                    <button name="delete_tag" value="{{ x['tag'] }}"
-                                        style="cursor: pointer;border: none; background-color: transparent;">
-                                        <i class="fa-solid fa-xmark"></i></i></button>
-                                    <span>{{ x['tag'] }}</span>
-                                </form>
-                            </td>
-                            <td>
-                                {% for y in x['patterns'] %}
-                                <form action="" method="post">
-                                    <button name="delete_pattern" value="{{ y }};_;{{ x['tag'] }}"
-                                        style="cursor: pointer;border: none; background-color: transparent;"><i
-                                            class="fa-solid fa-xmark"></i></i></button>
-                                    <p style="display: inline-block;">{{ y }}</p>
-                                </form>
-                                {% endfor %}
-                                <form action="" method="post">
-                                    <input name="add_pattern" type="text" placeholder="Add new pattern">
-                                    <button type="submit" name="tag_to_add_pattern" value="{{ x['tag'] }}">Add</button>
-                                </form>
-                            </td>
-                            <td>
-                                {% for y in x['responses'] %}
-                                <form action="" method="post">
-                                    <button name="delete_response" value="{{ y }};_;{{ x['tag'] }}"
-                                        style="cursor: pointer;border: none; background-color: transparent;"><i
-                                            class="fa-solid fa-xmark"></i></i></button>
-                                    <p style="display: inline-block;">{{ y }}</p>
-                                </form>
-                                {% endfor %}
-                                <form action="" method="post">
-                                    <input name="add_response" type="text" placeholder="Add new response">
-                                    <button type="submit" name="tag_to_add_response" value="{{ x['tag'] }}">Add</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        <tr>
-                            <td>
-                                <form action="" method="post">
-                                    <input name="add_tag" type="text" placeholder="Add new tag">
-                                    <button type="submit" name="test" value="hi">Add</button>
-                                </form>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="tab-pane">
+                <h2>Ember</h2>
+                <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It
+                    includes everything you need to build rich UIs that work on any device.</p>
             </div>
-        </div>
-        <div class="tab-pane">
-            <h2>Ember</h2>
-            <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It
-                includes everything you need to build rich UIs that work on any device.</p>
         </div>
     </div>
-</div>
-<form method="post" action="logout">
-    <input style="position: absolute; top: 10px; right: 10px;" type="submit" value="Log out">
-</form>
+    <form method="post" action="logout"
+        style="position: absolute; top: 10px; right: 10px; display: flex; justify-content: center; align-items: center;">
+        <button class="btn btn-danger">Log out</button>
+    </form>
+</section>
 
 <script>
     window.onload = function () {

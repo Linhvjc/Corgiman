@@ -2,8 +2,9 @@
 from flask import Flask, render_template, request, session, get_template_attribute, redirect, url_for, jsonify, stream_template 
 from markupsafe import escape
 from db import user_table, train_table, message_no_response_table, message_table
-from handle import authentication, add_pattern, remove_pattern,add_response,remove_response, all_tag_option, check_if_message_in_noanswer, get_all_message_no_response_data, get_message_response, store_message, get_message_database, add_block_message, get_all_user_info, get_all_train_data
+from handle import authentication,check_username_exist, add_pattern, remove_pattern,add_response,remove_response, all_tag_option, check_if_message_in_noanswer, get_all_message_no_response_data, get_message_response, store_message, get_message_database, add_block_message, get_all_user_info, get_all_train_data
 from chatbot import chat
+from training import training_data
 import time
 from datetime import datetime
 from flask_socketio import SocketIO, send
@@ -47,7 +48,9 @@ def main():
         # Check if username and password in session
         if 'username' in session and 'password' in session:
             message_data = get_message_database(session['username'])
-            return render_template('main.html', data = message_data)
+            total_messages = message_collection.count_documents({"username": session['username']})
+            return render_template('main.html', data = message_data, 
+                                   username = session['username'], message_quantity = total_messages)
         else:
             return redirect(url_for("login"))
 
@@ -97,22 +100,24 @@ def register():
         # Get data from form register
         username = request.form['username']
         password = request.form['password']
-        birthday = request.form['birthday']
-        address = request.form['address']
-        phone = request.form['phone']
+        confirm_password = request.form['confirm-password']
         
-        # insert data to database
-        user_collection.insert_one({
-            "username": username,
-            "password": password,
-            "birthday": birthday,
-            "address": address,
-            "phone": phone,
-            "last_login": ""
-        })
-        return redirect(url_for("login"))
+        if check_username_exist(username):
+            return render_template('auth/register.html', message = 'Username has already exist!')
+        elif len(password) < 6 :
+            return render_template('auth/register.html', message = 'Password must be more than 6 characters!')
+        elif confirm_password != password:
+            return render_template('auth/register.html', message = 'Wrong confirm password!')
+        else:
+            # insert data to database
+            user_collection.insert_one({
+                "username": username,
+                "password": password,
+                "last_login": ""
+            })
+            return redirect(url_for("login"))
     else:
-        return render_template('auth/register.html')
+        return render_template('auth/register.html', message = '')
 
 #! Admin route
 @app.get('/admin')
@@ -162,7 +167,8 @@ def admin_action():
         result = request.form['delete_response']
         [response_delete, tag] = result.split(';_;')
         remove_response(tag, response_delete)
-    
+    if "training" in request.form:
+        training_data()
     # MESSAGE TO RESPONSE SECTION
     if "btn_add_message_to_answer" in request.form:
         message_to_response = request.form['btn_add_message_to_answer']
@@ -175,6 +181,7 @@ def admin_action():
         
     
     return redirect(url_for("admin"))
+
 
 if __name__ == '__main__':
     socketio.run(app, host="localhost")

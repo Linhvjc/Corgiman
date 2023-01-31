@@ -92,7 +92,7 @@
                         </div>
                         <div class="user_info">
                             <span>Corgiman</span>
-                            <p>1767 Messages</p>
+                            <p>{{ message_quantity }} Messages</p>
                         </div>
                         <div class="video_cam">
                             <span><i class="fas fa-video"></i></span>
@@ -150,13 +150,18 @@
                 </div>
                 <div class="card-footer">
                     <div class="input-group">
-                        <button class="input-group-append" onclick="runSpeechRecognition()">
-                            <span class="input-group-text attach_btn"><i class="fa-solid fa-microphone"></i></span>
+                        <button class="input-group-append btn btn-success" id="btnRecord" onclick="runSpeechRecognition()">
+                            <span class="input-group-text attach_btn" style="
+                                display: block;
+                                height: 100%;
+                            "><i class="fa-solid fa-microphone"></i></span>
                         </button>
                         <input type="text" id="message" class="form-control type_msg" placeholder="Type your message..."
                             autofocus></input>
-                        <button id="sendBtn" class="input-group-append">
-                            <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+                        <button id="sendBtn" class="input-group-append btn btn-primary">
+                            <span style="
+                                display: block;
+                                height: 100%;" class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
                         </button>
                     </div>
                 </div>
@@ -164,41 +169,54 @@
         </div>
     </div>
 </div>
-<form method="post" action="logout">
-    <input style="position: absolute; top: 10px; right: 10px;" type="submit" value="Log out">
+<form method="post" action="logout"
+    style="position: absolute; top: 10px; right: 10px; display: flex; justify-content: center; align-items: center;">
+    <span style="margin-right: 20px;">Welcome {{ username }}</span>
+    <button class="btn btn-danger">Log out</button>
 </form>
 <!-- <script src="./../static/main.js"></script> -->
 <script src="{{ url_for('static', filename='main.js') }}"></script>
 
 <script>
     /* JS comes here */
+    var check_say = false
+    const btnRecord = document.querySelector('#btnRecord')
     function runSpeechRecognition() {
-        // get output div reference
-        var output = document.getElementById("message");
-        // new speech recognition object
         var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
         var recognition = new SpeechRecognition();
+        if (!check_say) {
+            // get output div reference
+            var output = document.getElementById("message");
+            // new speech recognition object
 
-        // This runs when the speech recognition service starts
-        recognition.onstart = function () {
-            // action.innerHTML = "<small>listening, please speak...</small>";
-        };
+            // This runs when the speech recognition service starts
+            recognition.onstart = function () {
+                // action.innerHTML = "<small>listening, please speak...</small>";
+            };
 
-        recognition.onspeechend = function () {
-            // action.innerHTML = "<small>stopped listening, hope you are done...</small>";
+            recognition.onspeechend = function () {
+                // action.innerHTML = "<small>stopped listening, hope you are done...</small>";
+                recognition.stop();
+            }
+
+            // This runs when the speech recognition service returns result
+            recognition.onresult = function (event) {
+                var transcript = event.results[0][0].transcript;
+                // var confidence = event.results[0][0].confidence;
+                output.value = transcript
+                document.getElementById("sendBtn").click();
+            };
+            // start recognition
+            recognition.start();
+            check_say = true
+            btnRecord.classList.remove('btn-success')
+            btnRecord.classList.add('btn-danger')
+        } else {
             recognition.stop();
+            check_say = false
+            btnRecord.classList.remove('btn-danger')
+            btnRecord.classList.add('btn-success')
         }
-
-        // This runs when the speech recognition service returns result
-        recognition.onresult = function (event) {
-            var transcript = event.results[0][0].transcript;
-            // var confidence = event.results[0][0].confidence;
-            output.value = transcript
-            document.getElementById("sendBtn").click();
-        };
-
-        // start recognition
-        recognition.start();
     }
 </script>
 
