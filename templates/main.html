@@ -86,7 +86,7 @@
                 <div class="card-header msg_head">
                     <div class="d-flex bd-highlight">
                         <div class="img_cont">
-                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            <img src="https://www.weka.de/wp-content/uploads/2020/05/chatbot-scaled.jpg"
                                 class="rounded-circle user_img">
                             <span class="online_icon"></span>
                         </div>
@@ -111,16 +111,6 @@
                 </div>
                 <!--? Body of conversation  -->
                 <div class="card-body msg_card_body" id="messages">
-                    <div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
-                                class="rounded-circle user_img_msg">
-                        </div>
-                        <div class="msg_cotainer">
-                            Bot is ready !
-                            <span class="msg_time"></span>
-                        </div>
-                    </div>
                     <!-- {% autoescape off %}
                         {{ data }}
                         {% endautoescape %} -->
@@ -132,13 +122,13 @@
                             <span class="msg_time_send">{{ x['time'] }}</span>
                         </div>
                         <div class="img_cont_msg">
-                            <img src="https://play-lh.googleusercontent.com/6f6MrwfRIEnR-OIKIt_O3VdplItbaMqtqgCNSOxcfVMCKGKsOdBK5XcI6HZpjssnB2Y"
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLQlX8kHgCFYgNqXisB6cWENyTofgINwzUOG_u6zBbliVuY_n5EwFl0W4k1b43X9HcsII&usqp=CAU"
                                 class="rounded-circle user_img_msg">
                         </div>
                     </div>
                     <div class="d-flex justify-content-start mb-4">
                         <div class="img_cont_msg">
-                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            <img src="https://www.weka.de/wp-content/uploads/2020/05/chatbot-scaled.jpg"
                                 class="rounded-circle user_img_msg">
                         </div>
                         <div class="msg_cotainer">
@@ -147,6 +137,16 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <div class="d-flex justify-content-start mb-4">
+                        <div class="img_cont_msg">
+                            <img src="https://www.weka.de/wp-content/uploads/2020/05/chatbot-scaled.jpg"
+                                class="rounded-circle user_img_msg">
+                        </div>
+                        <div class="msg_cotainer">
+                            Hello {{ username }}. Bot is ready !
+                            <span class="msg_time"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="input-group">
@@ -170,8 +170,7 @@
     </div>
 </div>
 <form method="post" action="logout"
-    style="position: absolute; top: 10px; right: 10px; display: flex; justify-content: center; align-items: center;">
-    <span style="margin-right: 20px;">Welcome {{ username }}</span>
+    style="position: absolute; top: 10px; right: 10px; ">
     <button class="btn btn-danger">Log out</button>
 </form>
 <!-- <script src="./../static/main.js"></script> -->

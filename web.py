@@ -2,9 +2,9 @@
 from flask import Flask, render_template, request, session, get_template_attribute, redirect, url_for, jsonify, stream_template 
 from markupsafe import escape
 from db import user_table, train_table, message_no_response_table, message_table
-from handle import authentication,check_username_exist, add_pattern, remove_pattern,add_response,remove_response, all_tag_option, check_if_message_in_noanswer, get_all_message_no_response_data, get_message_response, store_message, get_message_database, add_block_message, get_all_user_info, get_all_train_data
+from handle import authentication,add_json_data_to_database,check_username_exist, add_pattern, remove_pattern,add_response,remove_response, all_tag_option, check_if_message_in_noanswer, get_all_message_no_response_data, get_message_response, store_message, get_message_database, add_block_message, get_all_user_info, get_all_train_data
 from chatbot import chat
-from training import training_data
+from training import training_data_database, training_data_json
 import time
 from datetime import datetime
 from flask_socketio import SocketIO, send
@@ -50,7 +50,7 @@ def main():
             message_data = get_message_database(session['username'])
             total_messages = message_collection.count_documents({"username": session['username']})
             return render_template('main.html', data = message_data, 
-                                   username = session['username'], message_quantity = total_messages)
+                                   username = session['username'], message_quantity = total_messages*2)
         else:
             return redirect(url_for("login"))
 
@@ -168,7 +168,12 @@ def admin_action():
         [response_delete, tag] = result.split(';_;')
         remove_response(tag, response_delete)
     if "training" in request.form:
-        training_data()
+        total_train_documents = train_collection.count_documents({})
+        if total_train_documents > 0:
+            training_data_database()
+        else:
+            training_data_json()
+            add_json_data_to_database()
     # MESSAGE TO RESPONSE SECTION
     if "btn_add_message_to_answer" in request.form:
         message_to_response = request.form['btn_add_message_to_answer']

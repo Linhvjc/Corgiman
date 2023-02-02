@@ -49,10 +49,6 @@
                 <i class="tab-icon fas fa-pen-nib"></i>
                 Train data
             </div>
-            <div class="tab-item">
-                <i class="tab-icon fas fa-plus-circle"></i>
-                Ember
-            </div>
             <div class="line"></div>
         </div>
 
@@ -66,9 +62,6 @@
                             <tr>
                                 <th scope="col">Username</th>
                                 <th scope="col">Password</th>
-                                <th scope="col">Birthday</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone number</th>
                                 <th scope="col">Last login</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -78,14 +71,11 @@
                             <tr>
                                 <td scope="row" style="color: #666666;">{{ x['username'] }}</td>
                                 <td>{{ x['password'] }}</td>
-                                <td>{{ x['birthday'] }}</td>
-                                <td>{{ x['address'] }}</td>
-                                <td>{{ x['phone'] }}</td>
                                 <td>{{ x['last_login'] }}</td>
                                 <td>
                                     {% if x['username'] != 'admin' %}
                                     <form action="" method="POST">
-                                        <button type="submit" name="delete_user"
+                                        <button class="btn btn-outline-danger" type="submit" name="delete_user"
                                             value="{{ x['username'] }}">Delete</button>
                                     </form>
                                     {% endif %}
@@ -113,7 +103,7 @@
                                 <form action="" method="post">
                                     <td>{{ x['message'] }}</td>
                                     <td>
-                                        <select name="tag_message_to_answer" id="">
+                                        <select name="tag_message_to_answer" id="" class="form-control form-control-sm">
                                             {% autoescape off %}
                                             {{ tag_data }}
                                             {% endautoescape %}
@@ -121,9 +111,9 @@
                                     </td>
                                     <td>
                                         <button type="submit" name="btn_delete_message_to_answer"
-                                            value="{{ x['message'] }}">Delete</button>
-                                        <button type="submit" name="btn_add_message_to_answer"
-                                            value="{{ x['message'] }}">Add</button>
+                                            value="{{ x['message'] }}" class="btn btn-outline-danger">Delete</button>
+                                        <button style="margin-left: 20px;" type="submit" name="btn_add_message_to_answer"
+                                            value="{{ x['message'] }}" class="btn btn-outline-success">Add</button>
                                     </td>
                                 </form>
                             </tr>
@@ -150,7 +140,7 @@
                                     <form action="" method="post">
                                         <button name="delete_tag" value="{{ x['tag'] }}"
                                             style="cursor: pointer;border: none; background-color: transparent;">
-                                            <i class="fa-solid fa-xmark"></i></i></button>
+                                            <i style="font-size: 16px; color: red;" class="fa-solid fa-xmark"></i></i></button>
                                         <span>{{ x['tag'] }}</span>
                                     </form>
                                 </td>
@@ -159,14 +149,14 @@
                                     <form action="" method="post">
                                         <button name="delete_pattern" value="{{ y }};_;{{ x['tag'] }}"
                                             style="cursor: pointer;border: none; background-color: transparent;"><i
-                                                class="fa-solid fa-xmark"></i></i></button>
+                                                class="fa-solid fa-xmark" style="font-size: 16px; color: red;"></i></i></button>
                                         <p style="display: inline-block;">{{ y }}</p>
                                     </form>
                                     {% endfor %}
                                     <form action="" method="post">
-                                        <input name="add_pattern" type="text" placeholder="Add new pattern">
+                                        <input style="display: inline-block; max-width: 250px;" class="form-control" name="add_pattern" type="text" placeholder="Add new pattern">
                                         <button type="submit" name="tag_to_add_pattern"
-                                            value="{{ x['tag'] }}">Add</button>
+                                            value="{{ x['tag'] }}" class="btn btn-outline-success">Add</button>
                                     </form>
                                 </td>
                                 <td>
@@ -174,14 +164,14 @@
                                     <form action="" method="post">
                                         <button name="delete_response" value="{{ y }};_;{{ x['tag'] }}"
                                             style="cursor: pointer;border: none; background-color: transparent;"><i
-                                                class="fa-solid fa-xmark"></i></i></button>
+                                                class="fa-solid fa-xmark" style="font-size: 16px; color: red;"></i></i></button>
                                         <p style="display: inline-block;">{{ y }}</p>
                                     </form>
                                     {% endfor %}
                                     <form action="" method="post">
-                                        <input name="add_response" type="text" placeholder="Add new response">
+                                        <input style="display: inline-block; max-width: 250px;" class="form-control" name="add_response" type="text" placeholder="Add new response">
                                         <button type="submit" name="tag_to_add_response"
-                                            value="{{ x['tag'] }}">Add</button>
+                                            value="{{ x['tag'] }}" class="btn btn-outline-success">Add</button>
                                     </form>
                                 </td>
                             </tr>
@@ -189,8 +179,8 @@
                             <tr>
                                 <td>
                                     <form action="" method="post">
-                                        <input name="add_tag" type="text" placeholder="Add new tag">
-                                        <button type="submit" name="test" value="hi">Add</button>
+                                        <input style=" margin-bottom: 8px; max-width: 200px;" class="form-control form-control-sm" name="add_tag" type="text" placeholder="Add new tag">
+                                        <button type="submit" name="test" value="hi" class="btn btn-outline-success">Add</button>
                                     </form>
                                 </td>
                                 <td></td>
@@ -202,11 +192,6 @@
                 <form method="post" action="" style="margin-top: 10px;">
                     <button class="btn btn-primary" name="training">Start training data</button>
                 </form>
-            </div>
-            <div class="tab-pane">
-                <h2>Ember</h2>
-                <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It
-                    includes everything you need to build rich UIs that work on any device.</p>
             </div>
         </div>
     </div>
@@ -234,12 +219,12 @@
                 panes[0].classList.add('active');
                 localStorage.setItem(`tab_${0}`, true);
                 localStorage.setItem(`pane_${0}`, true);
-                for (let i = 1; i < 4; i++) {
+                for (let i = 1; i < 3; i++) {
                     localStorage.setItem(`tab_${i}`, false);
                     localStorage.setItem(`pane_${i}`, false);
                 }
             } else {
-                for (let i = 0; i < 4; i++) {
+                for (let i = 0; i < 3; i++) {
                     var check = localStorage.getItem(`tab_${i}`);
                     // console.log(check )
                     if (check == 'true') {
@@ -280,7 +265,7 @@
                 localStorage.setItem('Last_action', start)
 
                 // Check other and set False
-                for (let i = 0; i < 4; i++) {
+                for (let i = 0; i < 3; i++) {
                     if (i != index) {
                         localStorage.setItem(`tab_${i}`, false);
                         localStorage.setItem(`pane_${i}`, false);

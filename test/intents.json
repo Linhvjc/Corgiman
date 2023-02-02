@@ -1,0 +1,55 @@
+{
+    "intents": [
+        {
+            "tag": "greetings",
+            "patterns": [
+                "hello",
+                "hey",
+                "hi",
+                "good day",
+                "Greetings",
+                "what's up?",
+                "how is it going?",
+                "Hey there!",
+                "Morning!",
+                "How are things?",
+                "What's new?",
+                "It's good to see you",
+                "G'day!",
+                "Howdy!",
+                "What's up?",
+                "How's it going?",
+                "What's happening?",
+                "What's the story?",
+                "Yo!",
+                "Hi there",
+                "Good morning",
+                "Good afternoon",
+                "Good evening",
+                "It's nice to meet you",
+                "It's a pleasure to meet you",
+                "Pleased to meet you",
+                "How do you do?",
+                "Salutations!",
+                "Nice to meet you!",
+                "Long time no see",
+                "Good to see you again",
+                "Welcome back"
+            ],
+            "responses": [
+                "Hello!",
+                "Hey!",
+                "Hi there!",
+                "Good to see you!",
+                "What can I do for you today?",
+                "It's nice to meet you!",
+                "It's a pleasure to meet you!",
+                "Pleased to meet you!",
+                "How can I help you today?",
+                "How have you been?",
+                "What's been up with you?"
+            ]
+        }
+
+    ]
+}

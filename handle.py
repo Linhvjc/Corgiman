@@ -2,6 +2,7 @@ from db import user_table, train_table, message_table, message_no_response_table
 from chatbot import chat
 import time
 from datetime import datetime
+import json
 
 user_collection = user_table()
 message_collection = message_table()
@@ -42,13 +43,13 @@ def add_block_message(message, response):
                                     <span class="msg_time_send">{dt_string}</span>
                                 </div>
                                 <div class="img_cont_msg">
-                                    <img src="https://play-lh.googleusercontent.com/6f6MrwfRIEnR-OIKIt_O3VdplItbaMqtqgCNSOxcfVMCKGKsOdBK5XcI6HZpjssnB2Y"
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLQlX8kHgCFYgNqXisB6cWENyTofgINwzUOG_u6zBbliVuY_n5EwFl0W4k1b43X9HcsII&usqp=CAU"
                                         class="rounded-circle user_img_msg">
                                 </div>
                             </div>;
                             <div class="d-flex justify-content-start mb-4">
                                 <div class="img_cont_msg">
-                                    <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+                                    <img src="https://www.weka.de/wp-content/uploads/2020/05/chatbot-scaled.jpg" class="rounded-circle user_img_msg">
                                 </div>
                                 <div class="msg_cotainer">
                                     {response}
@@ -69,9 +70,9 @@ def get_all_tag():
         result.append(x['tag'])
     return result
 
-all_response_noanswer = train_collection.find_one({'tag': 'noanswer'})['responses']
 
 def check_if_message_in_noanswer(message):
+    all_response_noanswer = train_collection.find_one({'tag': 'noanswer'})['responses']
     if message in all_response_noanswer:
         return True
     else:
@@ -134,5 +135,23 @@ def remove_response(tag, response_delete):
     
 def check_username_exist(username):
     return user_collection.count_documents({"username": username}) > 0
+
+def add_json_data_to_database():
+    # Opening JSON file
+    f = open('intents.json')
+    
+    # returns JSON object as 
+    # a dictionary
+    data = json.load(f)
+    # Iterating through the json
+    # list
+    for i in data['intents']:
+        train_collection.insert_one({
+            "tag": i['tag'],
+            'patterns': i['patterns'],
+            'responses': i['responses']
+        })
+    f.close()
+
 if __name__ == '__main__':
     print()
