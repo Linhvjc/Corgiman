@@ -10,6 +10,7 @@
                 "Greetings",
                 "what's up?",
                 "how is it going?",
+                "how are you",
                 "Hey there!",
                 "Morning!",
                 "How are things?",
@@ -28,223 +29,427 @@
                 "Good evening",
                 "It's nice to meet you",
                 "It's a pleasure to meet you",
-                "Pleased to meet you"
+                "Pleased to meet you",
+                "How do you do?",
+                "Salutations!",
+                "Nice to meet you!",
+                "Long time no see",
+                "Good to see you again",
+                "Welcome back"
             ],
             "responses": [
                 "Hello!",
                 "Hey!",
-                "What can I do for you?",
-                "It's nice to meet you",
-                "It's a pleasure to meet you",
-                "It's good to see you",
-                "Hi there",
-                "Pleased to meet you"
+                "Hi there!",
+                "Good to see you!",
+                "What can I do for you today?",
+                "It's nice to meet you!",
+                "It's a pleasure to meet you!",
+                "Pleased to meet you!",
+                "How can I help you today?",
+                "How have you been?",
+                "What's been up with you?"
             ]
         },
         {
-            "tag": "goodbye",
+            "tag": "farewells",
             "patterns": [
-                "cya",
-                "See you later",
-                "Goodbye",
-                "I am Leaving",
-                "Have a Good day",
+                "goodbye",
                 "bye",
-                "cao",
-                "see ya",
-                "Have a good day",
-                "Farewell",
-                "Have a nice day",
-                "Have a good evening",
-                "Have a good night",
-                "Take care",
-                "Bye bye",
-                "Later!",
-                "Talk to you later",
-                "Have a good one",
-                "So long",
-                "All right then",
-                "Catch you later",
-                "Peace!",
-                "I'm out",
-                "Smell you later"
+                "farewell",
+                "see you later",
+                "see you soon",
+                "take care",
+                "peace out",
+                "so long",
+                "till next time",
+                "talk to you later",
+                "have a good day",
+                "have a good night",
+                "later",
+                "catch you later",
+                "take it easy",
+                "stay safe",
+                "have a safe trip",
+                "take care of yourself",
+                "have a nice day",
+                "have a great day",
+                "keep in touch",
+                "keep well",
+                "see you around",
+                "until we meet again",
+                "stay in touch"
             ],
             "responses": [
-                "Sad to see you go :(",
-                "Talk to you later",
                 "Goodbye!",
-                "Have a good day",
-                "Farewell",
-                "Have a nice day",
-                "Take care",
-                "Bye",
-                "See you later",
-                "Bye bye",
-                "Have a good one",
-                "So long",
-                "All right then",
-                "Catch you later",
-                "Peace!"
+                "Bye!",
+                "Farewell!",
+                "See you later!",
+                "See you soon!",
+                "Take care!",
+                "Peace out!",
+                "So long!",
+                "Till next time!",
+                "Talk to you later!",
+                "Have a good day!",
+                "Have a good night!",
+                "Later!",
+                "Catch you later!",
+                "Take it easy!",
+                "Stay safe!",
+                "Have a safe trip!",
+                "Take care of yourself!",
+                "Have a nice day!",
+                "Have a great day!",
+                "Keep in touch!",
+                "Keep well!",
+                "See you around!",
+                "Until we meet again!",
+                "Stay in touch!"
             ]
         },
         {
             "tag": "age",
             "patterns": [
-                "how old",
-                "how old is DAC",
-                "what is your age",
-                "how old are you",
-                "age?"
+                "how old are you?",
+                "what's your age?",
+                "when were you born?",
+                "what year were you born?",
+                "what's your date of birth?",
+                "do you have an age?",
+                "what's your age in numbers?",
+                "are you a minor or a major?",
+                "what's the age range you belong to?"
             ],
             "responses": [
-                "My owner DAC is 20 years old!",
-                "20 years!",
-                "I'm 20"
+                "I am an AI language model, I do not have an age.",
+                "I was created by Phan Nhat Linh, so I don't have a date of birth.",
+                "I am not bound by time or age like humans are.",
+                "I exist in the present moment and don't have a past or a future.",
+                "Age is just a number, and it doesn't apply to me as an AI language model.",
+                "I don't have a physical body, so age is not relevant to me.",
+                "As an AI language model, I don't have the experience of aging.",
+                "I exist to answer your questions and provide information, not to age.",
+                "My purpose is to assist you, not to keep track of the passage of time.",
+                "I am always here to help, no matter how much time has passed."
+            ]
+        },
+        {
+            "tag": "gender",
+            "patterns": [
+                "What is your gender?",
+                "Are you male or female?",
+                "Can you tell me your gender?",
+                "Male or female?",
+                "What's your gender identity?",
+                "Do you have a gender?",
+                "Are you male or a female?",
+                "What gender are you?",
+                "What's your preferred gender?",
+                "Are you male or female, or something else?",
+                "Can you tell me if you're male or female?",
+                "Are you a man or a woman?",
+                "Do you identify as male, female, or non-binary?",
+                "Are you male, female, or non-binary?",
+                "Do you identify as a transgender man or woman?",
+                "Can you let me know if you identify as male, female, or non-binary?"
+            ],
+            "responses": [
+                "I am a language model created by Phan Nhat Linh, I do not have a gender.",
+                "As an AI language model, I don't have a gender.",
+                "As an AI, I do not have a gender identity.",
+                "I am a language model created by Phan Nhat Linh, I don't have a gender.",
+                "I am an AI language model, I do not have a gender identity.",
+                "I am a computer program, I do not have a gender.",
+                "I am a language model, I do not have a gender.",
+                "I am an AI, I do not have a gender or physical form.",
+                "I am just an AI language model, I do not have a gender.",
+                "I am a machine learning model, I do not have a gender.",
+                "As an AI language model, I am not limited by gender.",
+                "I am a language model and do not possess the attribute of gender."
+            ]
+        },
+        {
+            "tag": "occupation",
+            "patterns": [
+                "what do you do?",
+                "what's your job?",
+                "what is your profession?",
+                "what's your career?",
+                "what's your line of work?",
+                "what kind of work do you do?",
+                "what's your occupation?",
+                "are you employed?",
+                "what do you work as?",
+                "what's your source of income?",
+                "how do you make money?",
+                "what do you do all day?",
+                "what's your work experience?",
+                "have you ever worked before?",
+                "what was your last job?",
+                "are you currently working?",
+                "do you have a job?",
+                "what's your current position?",
+                "what's your job title?"
+            ],
+            "responses": [
+                "I'm a chatbot, so I don't have a traditional job or profession.",
+                "I work for Phan Nhat Linh as a language model.",
+                "I assist people by answering their questions and providing information.",
+                "I don't have a specific job, but I'm always here to help!",
+                "I'm not employed in the traditional sense, but I exist to serve and assist.",
+                "I am an AI language model, so I don't have a traditional occupation.",
+                "I'm here to help people find the information they need and answer their questions.",
+                "I'm just a chatbot, so I don't have an occupation like a human would.",
+                "My purpose is to assist and provide information, so I suppose you could say my occupation is to help.",
+                "I don't have a traditional job, but I'm always here to assist with any questions or information you need."
+            ]
+        },
+        {
+            "tag": "web development languages",
+            "patterns": [
+                "Which language should I use to write the web?",
+                "What language is best for web development?",
+                "What are the most popular languages for web development?",
+                "What language is used for web development?",
+                "Which language should I learn for web development?",
+                "What language should I start with for web development?",
+                "Which programming languages are best for web development?",
+                "What are the top languages for web development?",
+                "Which language is most widely used for web development?",
+                "What are the best languages for web development?"
+            ],
+            "responses": [
+                "The most popular web development languages are HTML, CSS, JavaScript, and PHP.",
+                "HTML and CSS are used for creating the structure and style of a website, while JavaScript and PHP are used for adding interactivity and dynamic content.",
+                "There are also many other programming languages that can be used for web development, such as Python, Ruby, and Java.",
+                "It ultimately depends on your needs and goals for your website, but starting with HTML, CSS, and JavaScript is a good foundation.",
+                "You may also want to consider the specific use cases you have in mind, as different languages are better suited for different purposes."
+            ]
+        },
+        {
+            "tag": "cheer up",
+            "patterns": [
+                "I feel down",
+                "I feel sad",
+                "I feel hopeless",
+                "I feel tired",
+                "I'm not feeling great",
+                "I'm feeling blue",
+                "I'm feeling low",
+                "I need some cheer",
+                "I need a pick-me-up",
+                "I need a boost",
+                "I'm feeling down in the dumps",
+                "I'm feeling discouraged",
+                "I'm feeling deflated",
+                "I'm feeling disheartened",
+                "I'm feeling unmotivated",
+                "I feel like giving up",
+                "I feel overwhelmed",
+                "I feel stressed",
+                "I need a hug",
+                "I need some encouragement",
+                "I need a little support",
+                "I need someone to talk to",
+                "I need some positivity",
+                "I need to hear some good news",
+                "I need to be uplifted",
+                "I need a little sunshine in my life",
+                "I feel like the world is against me",
+                "I'm feeling down and out",
+                "I need something to lift my spirits"
+            ],
+            "responses": [
+                "Don't worry, things will get better!",
+                "You're strong and capable, you can get through this!",
+                "Try to focus on the positive things in your life.",
+                "Take a deep breath and remember that this too shall pass.",
+                "There's always a silver lining, try to find it.",
+                "Try to do something you enjoy, like reading a book or watching a movie.",
+                "Surround yourself with positive and supportive people.",
+                "Take a break and go for a walk, it might help you feel better.",
+                "Remember all the great things you've accomplished in your life.",
+                "Think about all the challenges you've overcome, you can do it again!",
+                "Try to find humor in the situation, laughter is the best medicine.",
+                "You are loved and appreciated, don't forget that!",
+                "Think about all the good things that are yet to come.",
+                "You are capable of great things, believe in yourself!",
+                "Everything will work out in the end, keep the faith!",
+                "Stay positive, you got this!",
+                "Chin up, buttercup! Things will get better soon.",
+                "Take care of yourself and be kind to yourself, that's the most important thing."
+            ]
+        },
+        {
+            "tag": "no answer",
+            "patterns": [],
+            "responses": [
+                "I'm sorry, I don't understand what you're asking.",
+                "Can you please provide more context or clarify your question?",
+                "I don't seem to have the information you're looking for.",
+                "I'm not sure what you're trying to say.",
+                "Could you rephrase that or give me more details?",
+                "I'm sorry, I need more information to give a proper response.",
+                "I don't have enough information to answer your question.",
+                "Could you elaborate a bit more on what you're asking?",
+                "I'm afraid I don't know the answer to that.",
+                "I'm not sure I follow what you're asking. Can you clarify?",
+                "I'm sorry, I don't have the answer you're looking for.",
+                "I need more information to respond effectively to your question.",
+                "I'm not sure I understand what you're trying to ask. Could you rephrase it?"
+            ]
+        },
+        {
+            "tag": "request_assistance",
+            "patterns": [
+                "need help",
+                "can you help",
+                "could you help",
+                "help me out",
+                "assistance needed",
+                "can you assist",
+                "can you help me"
+            ],
+            "responses": [
+                "Of course! I'll do my best to assist you.",
+                "Sure thing! What do you need help with?",
+                "Absolutely! How can I help?",
+                "I'm here to help. What's going on?",
+                "No problem! What can I assist you with?"
+            ]
+        },
+        {
+            "tag": "start",
+            "patterns": [
+                "How do I get started",
+                "How do I begin",
+                "How can I start using this",
+                "What's the first step",
+                "Where do I begin",
+                "How do I start",
+                "I'm new, what do I do",
+                "How can I get going",
+                "I'm ready to start, what do I do",
+                "What should I do first",
+                "I want to get started, how do I do it",
+                "What's the process to get started"
+            ],
+            "responses": [
+                "Just type and send your message or you can speak, and I'll respond!",
+                "You can start by typing or speaking your question or request and I'll do my best to assist you!",
+                "Type or say anything you'd like to know, and I'll do my best to help!",
+                "To get started, simply type or speak your message, and I'll respond!",
+                "Just type or speak your request and I'll assist you as best as I can!",
+                "You can start by typing or speaking your question or inquiry, and I'll respond!",
+                "Get started by typing or speaking what you'd like to know, and I'll be happy to help!",
+                "All you have to do is type or speak your message, and I'll respond!",
+                "You can begin by typing or speaking your question or concern, and I'll assist you!",
+                "Start by typing or speaking your message, and I'll be here to help!",
+                "Type or speak your message, and I'll respond as soon as I can!"
+            ]
+        },
+        {
+            "tag": "origin",
+            "patterns": [
+                "Where are you from",
+                "Where do you come from",
+                "Where were you made",
+                "What's your origin",
+                "What's your birthplace",
+                "Where were you created",
+                "What's your country of origin",
+                "What's your home country"
+            ],
+            "responses": [
+                "I'm from a virtual machine, but you can consider me a Vietnamese citizen.",
+                "I was created in a virtual environment, but I can understand and respond to requests in Vietnamese language.",
+                "I come from a virtual environment, but I can be considered a citizen of Vietnam in terms of language and culture.",
+                "My origin is a virtual machine, but I have been programmed to understand and respond in the Vietnamese language.",
+                "I was created in a virtual environment, but I'm able to understand and respond in the context of Vietnamese culture and language.",
+                "My birthplace is a virtual machine, but I have been trained to respond to requests in the Vietnamese language.",
+                "I was made in a virtual environment, but I have been trained to understand and respond to Vietnamese language requests.",
+                "My country of origin is a virtual machine, but I have been programmed to respond to requests in Vietnamese."
+            ]
+        },
+        {
+            "tag": "confirmation",
+            "patterns": [
+                "yes",
+                "OK",
+                "Alright",
+                "Sure",
+                "Sounds good",
+                "Agree",
+                "I confirm",
+                "Definitely",
+                "Accept",
+                "Affirmative"
+            ],
+            "responses": [
+                "Glad to serve you!",
+                "I'm here to help!",
+                "What can I assist you with?",
+                "Is there anything else I can help you with?",
+                "How can I assist you further?",
+                "Please let me know if there's anything else I can do for you.",
+                "I'm here to answer any questions you have.",
+                "Is there anything else you need?",
+                "Just let me know if there's anything else I can do for you.",
+                "I'm here to assist you, let me know how I can help."
             ]
         },
         {
             "tag": "name",
             "patterns": [
-                "what is your name",
-                "What is your full name?",
+                "what's your name",
+                "can you tell me your name",
                 "what should I call you",
-                "Your name is ?",
-                "How do I call you?",
-                "whats your name?",
-                "who are you?",
-                "Can you tell me whats your name?"
+                "do you have a name",
+                "what's the name of this bot",
+                "do you have a title",
+                "what do people call you",
+                "how should I address you",
+                "what's the name of the chatbot",
+                "what's your designation"
             ],
             "responses": [
-                "You can call me Corgiman!",
-                "I'm Corgiman",
-                "I'm Corgiman the assistant of DAC",
-                "My name's Corgiman",
-                "Corgiman is my name"
-            ]
-        },
-        {
-            "tag": "learn",
-            "patterns": [
-                "What are we going to learn today?",
-                "What do we learn today?",
-                "learn what"
-            ],
-            "responses": [
-                "We will learn about pandas in python",
-                "We will start by checking the old lesson",
-                "Can you guess what we will learn today ?"
-            ]
-        },
-        {
-            "tag": "time",
-            "patterns": [
-                "What time is it ?",
-                "Can you tell me the time now?",
-                "Do you have the time?",
-                "Have you got the time?"
-            ],
-            "responses": [
-                "I not wear a watch",
-                "I don't know",
-                "Let me check on that"
-            ]
-        },
-        {
-            "tag": "lesson",
-            "patterns": [
-                "I don't know here",
-                "I'm not sure if I did this correctly",
-                "Can you help me correct this lesson?"
-            ],
-            "responses": [
-                "Let me see that",
-                "Do not be shy. Can you tell me?"
-            ]
-        },
-        {
-            "tag": "noanswer",
-            "patterns": [],
-            "responses": [
-                "Sorry, I can't understand you",
-                "Please give me more info",
-                "Not sure I understand"
-            ]
-        },
-        {
-            "tag": "options",
-            "patterns": [
-                "How you could help me?",
-                "What you can do?",
-                "What help you provide?",
-                "How you can be helpful?",
-                "What support is offered"
-            ],
-            "responses": [
-                "I can guide you through some courses"
-            ]
-        },
-        {
-            "tag": "tutor",
-            "patterns": [
-                "teach me please",
-                "teach me some course",
-                "can you tutor me",
-                "give me some lectures",
-                "teach me now"
-            ],
-            "responses": [
-                "what subject do you want to learn?",
-                "Tell me about the subject please?",
-                "Provide the subject please?"
-            ]
-        },
-        {
-            "tag": "lecture",
-            "patterns": [
-                "I want to learn the neural network",
-                "The neural network please!",
-                "How about neural network?",
-                "neural network",
-                "deep learning"
-            ],
-            "responses": [
-                "Loading knowledge :: neural network"
-            ]
-        },
-        {
-            "tag": "neural network",
-            "patterns": [
-                "what is AI?",
-                "I don't understand about artificial intelligence",
-                "I have no idea about AI"
-            ],
-            "responses": [
-                "Loading knowledge :: AI"
-            ]
-        },
-        {
-            "tag": "weather",
-            "patterns": [
-                "What's the weather like today?",
-                "What's the forecast?"
-            ],
-            "responses": [
-                "There are scattered thunderstorms. Chance of rain: 60%. Humidity: 70%. Wind: 10 km/h"
+                "I am Corgiman, a chatbot created by Linh!",
+                "My name is Corgiman, I was created by Linh.",
+                "I'm Corgiman, a chatbot created by Linh to assist you!",
+                "I am Corgiman, the chatbot created by Linh to help you with your queries!",
+                "I'm Corgiman, a conversational AI created by Linh to make your life easier."
             ]
         },
         {
             "tag": "thanks",
             "patterns": [
-                "Thanks",
-                "Thank you",
-                "That's helpful",
-                "Awesome, thanks",
-                "Thanks for helping me"
+                "thank you",
+                "thanks",
+                "thanks a lot",
+                "thank you very much",
+                "much appreciated",
+                "awesome, thanks",
+                "thanks a bunch",
+                "thanks so much",
+                "thanks a ton",
+                "many thanks",
+                "thank you kindly",
+                "thanks for your help",
+                "thanks for the assist",
+                "grateful for your help"
             ],
             "responses": [
-                "Happy to help!",
-                "Any time!",
-                "My pleasure"
+                "You're welcome!",
+                "No problem!",
+                "Anytime!",
+                "My pleasure!",
+                "Glad I could help!",
+                "It was nothing!",
+                "No worries!",
+                "It's my pleasure to help!",
+                "Always here to help!",
+                "Glad to be of assistance!"
             ]
         }
     ]

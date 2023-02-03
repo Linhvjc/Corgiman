@@ -72,7 +72,7 @@ def get_all_tag():
 
 
 def check_if_message_in_noanswer(message):
-    all_response_noanswer = train_collection.find_one({'tag': 'noanswer'})['responses']
+    all_response_noanswer = train_collection.find_one({'tag': 'no answer'})['responses']
     if message in all_response_noanswer:
         return True
     else:

@@ -53,8 +53,10 @@ def predict_class(sentence):
     # print("results: " + str(results))
     return_list = []
     # check meaningful sentences
-    if results[0][1] < 0.6:
-        return_list = [{'intent': 'noanswer'}]
+    if len(results) == 0:
+        return_list = [{'intent': 'no answer'}]
+    elif results[0][1] < 0.6:
+        return_list = [{'intent': 'no answer'}]
     else:
         for r in results:
             return_list.append({'intent': classes[r[0]], 'probability': str(r[1])}) # r[0] is index, r[1] is value.

@@ -125,32 +125,32 @@
             <div class="tab-pane">
                 <h2>Train data</h2>
                 <div class="tableFixHead">
-                    <table class="table mb-0">
+                    <table style="width:100%" class="table mb-0">
                         <thead>
                             <tr>
-                                <th scope="col">Tag</th>
-                                <th scope="col">Patterns</th>
-                                <th scope="col">Responses</th>
+                                <th style="width:33.33%" scope="col">Tag</th>
+                                <th style="width:33.33%" scope="col">Patterns</th>
+                                <th style="width:33.33%" scope="col">Responses</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for x in train_data %}
                             <tr>
-                                <td scope="row" style="color: #666666;">
+                                <td style="width:33.33%" scope="row" style="color: #666666;">
                                     <form action="" method="post">
                                         <button name="delete_tag" value="{{ x['tag'] }}"
-                                            style="cursor: pointer;border: none; background-color: transparent;">
+                                            style="cursor: pointer;border: none; background-color: transparent;outline: none;">
                                             <i style="font-size: 16px; color: red;" class="fa-solid fa-xmark"></i></i></button>
                                         <span>{{ x['tag'] }}</span>
                                     </form>
                                 </td>
-                                <td>
+                                <td style="width:33.33%">
                                     {% for y in x['patterns'] %}
-                                    <form action="" method="post">
+                                    <form style="display: flex;align-items: start;" action="" method="post">
                                         <button name="delete_pattern" value="{{ y }};_;{{ x['tag'] }}"
-                                            style="cursor: pointer;border: none; background-color: transparent;"><i
+                                            style="cursor: pointer;border: none; background-color: transparent;outline: none; margin-right: 4px;"><i
                                                 class="fa-solid fa-xmark" style="font-size: 16px; color: red;"></i></i></button>
-                                        <p style="display: inline-block;">{{ y }}</p>
+                                        <p style="display: inline-block;word-break: break-all;white-space: normal; width: 100%;">{{ y }}</p>
                                     </form>
                                     {% endfor %}
                                     <form action="" method="post">
@@ -159,13 +159,13 @@
                                             value="{{ x['tag'] }}" class="btn btn-outline-success">Add</button>
                                     </form>
                                 </td>
-                                <td>
+                                <td style="width:33.33%">
                                     {% for y in x['responses'] %}
-                                    <form action="" method="post">
+                                    <form style="display: flex;align-items: start;" action="" method="post">
                                         <button name="delete_response" value="{{ y }};_;{{ x['tag'] }}"
-                                            style="cursor: pointer;border: none; background-color: transparent;"><i
+                                            style="cursor: pointer;border: none; background-color: transparent;outline: none; margin-right: 4px;"><i
                                                 class="fa-solid fa-xmark" style="font-size: 16px; color: red;"></i></i></button>
-                                        <p style="display: inline-block;">{{ y }}</p>
+                                        <p style="display: inline-block;word-break: break-all;white-space: normal; width: 100%;">{{ y }}</p>
                                     </form>
                                     {% endfor %}
                                     <form action="" method="post">
@@ -189,8 +189,9 @@
                         </tbody>
                     </table>
                 </div>
-                <form method="post" action="" style="margin-top: 10px;">
-                    <button class="btn btn-primary" name="training">Start training data</button>
+                <form method="post" action="" style="margin-top: 10px; display: flex; align-items: center;">
+                    <button onclick="displayTrainingMessage()" class="btn btn-primary" name="training">Start training data</button>
+                    <span id="training_message" style="display:none; margin-left: 16px; color: rgb(34, 34, 211);">Training in progress, please stand by...</span>
                 </form>
             </div>
         </div>
@@ -199,9 +200,15 @@
         style="position: absolute; top: 10px; right: 10px; display: flex; justify-content: center; align-items: center;">
         <button class="btn btn-danger">Log out</button>
     </form>
+    
 </section>
 
 <script>
+    function displayTrainingMessage() {
+        trainingMessage = document.querySelector('#training_message')
+        trainingMessage.style.display = 'block'
+    }
+
     window.onload = function () {
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);

@@ -103,7 +103,9 @@ def training_data_database():
 
     # Create model (Dense neural network)
     model = Sequential()
-    model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
+    model.add(Dense(256, input_shape=(len(train_x[0]),), activation='relu'))
+    model.add(Dropout(0.5))     # limit overfitting
+    model.add(Dense(128, activation='relu'))
     model.add(Dropout(0.5))     # limit overfitting
     model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.5))     # limit overfitting
@@ -114,7 +116,7 @@ def training_data_database():
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
     # fit and save history
-    hist = model.fit(np.array(train_x), np.array(train_y), epochs=2000, batch_size=5, verbose=1,callbacks=early_stopping)   # training
+    hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=10, verbose=1)   # training
     model.save(current_path+'/data/chatbot_model.h5', hist)     # Save model
     print("Done")
 
@@ -182,10 +184,12 @@ def training_data_json():
     train_y = list(training[:,1])
 
     model = Sequential()
-    model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
-    model.add(Dropout(0.5))
+    model.add(Dense(256, input_shape=(len(train_x[0]),), activation='relu'))
+    model.add(Dropout(0.5))     # limit overfitting
+    model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.5))     # limit overfitting
     model.add(Dense(64, activation='relu'))
-    model.add(Dropout(0.5))
+    model.add(Dropout(0.5))     # limit overfitting
     model.add(Dense(len(train_y[0]), activation='softmax'))
 
     sgd = gradient_descent_v2.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
@@ -194,7 +198,7 @@ def training_data_json():
     early_stopping = EarlyStopping(monitor='loss', patience=20, verbose=1)
 
     # fit and save history
-    hist = model.fit(np.array(train_x), np.array(train_y), epochs=2000, batch_size=5, verbose=1,callbacks=early_stopping)
+    hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=10, verbose=1)
     model.save('./data/chatbot_model.h5', hist)
     print("Done")
 
