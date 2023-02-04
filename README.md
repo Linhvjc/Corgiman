@@ -15,4 +15,35 @@ Introducing Corgiman, the simple yet efficient chatbot designed to answer your q
 git clone https://github.com/Linhvjc/Corgiman.git
 ```
 
+###### - Go to the project
+```
+cd Corgiman
+```
+
+###### - Installing Python Packages From a Requirements File
+```
+pip install -r requirements.txt
+```
+
+###### - Create new database in MongoDB compass
+<img src="/assets/img/MarineGEO_logo.png" alt="MarineGEO circle logo" style="height: 100px; width:auto;"/>
+
+###### - Create some collection
+
+###### - Run this app in localhost
+```
+python web.py
+```
+###### - Visit http://localhost:5000/ and register with username is 'admin'
+
+###### - Login as the account admin
+
+###### - Go to tab "Training data" and training the model
+
+###### - After that, you can login and register another account
+
+###### - Enjoy
+
+
+
 ### Vietnamese (Tiếng Việt) <a name="vietnam"></a>
