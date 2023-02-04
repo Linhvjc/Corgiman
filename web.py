@@ -1,11 +1,8 @@
 # import
-from flask import Flask, render_template, request, session, get_template_attribute, redirect, url_for, jsonify, stream_template 
-from markupsafe import escape
-from db import user_table, train_table, message_no_response_table, message_table
-from handle import authentication,add_json_data_to_database,check_username_exist, add_pattern, remove_pattern,add_response,remove_response, all_tag_option, check_if_message_in_noanswer, get_all_message_no_response_data, get_message_response, store_message, get_message_database, add_block_message, get_all_user_info, get_all_train_data
-from chatbot import chat
-from training import training_data_database, training_data_json
-import time
+from flask import Flask, render_template, request, session, redirect, url_for
+from modules.db import user_table, train_table, message_no_response_table, message_table
+from modules.handle import authentication,add_json_data_to_database,check_username_exist, add_pattern, remove_pattern,add_response,remove_response, all_tag_option, check_if_message_in_noanswer, get_all_message_no_response_data, get_message_response, store_message, get_message_database, add_block_message, get_all_user_info, get_all_train_data
+from modules.training import training_data_database, training_data_json
 from datetime import datetime
 from flask_socketio import SocketIO, send
 
@@ -40,6 +37,12 @@ def handle_message(message):
             send(data_response, broadcast=True)
     else:
         send(message, broadcast=True)
+        
+#! Error page
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 #! Main route
 @app.route('/', methods=["POST", "GET"])
