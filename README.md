@@ -2,7 +2,7 @@
 
 ## Table of content
 1. [English - Tiếng Anh](#english)
-2. [Vietnamese - Tiếng Việt](vietnam)
+2. [Vietnamese - Tiếng Việt](#vietnam)
 
 ### English (Tiếng Anh) <a name="english"></a>
 #### a. Introduction
