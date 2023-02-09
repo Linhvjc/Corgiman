@@ -67,6 +67,14 @@ python web.py
 > Use can type or speak
 ![image](https://user-images.githubusercontent.com/93339285/216781007-8f9e4171-7b4e-4f20-b88d-6e8628b5a626.png)
 
+#### d. Explanation
+> - web.py - This file contains the source code for the Flask application. It is used to build a website that allows users to interact with the chatbot and has features such as login, registration, message history, and user message management. It uses Flask, Flask-SocketIO, and other modules to function.
+> - requirements.txt - This is a file that contains the necessary libraries to install and run a software project.
+> - Chatbot.py - This file contains the code to create a Chatbot. It reads data stored in the files words.pkl and classes.pkl, and loads the trained model from the chatbot_model.h5 file. It uses the functions clean_up_sentence, bag_of_word, and predict_class to process the input sentence and predict its label. Then, it uses the get_response function to search and return a response from the database.
+> - training.py - This file is used to train a chatbot model to answer questions. The training results are stored, and the model is saved for future use.
+> - db.py - This file contains functions for accessing the MongoDB database.
+> - handle.py - This file serves as a module to manage, store, search, and process data in the program's database. 
+
 
 
 
@@ -131,3 +139,12 @@ python web.py
 ###### - Sử dụng nó
 > Bạn có thể gõ hoặc nói chuyện.
 ![image](https://user-images.githubusercontent.com/93339285/216781007-8f9e4171-7b4e-4f20-b88d-6e8628b5a626.png)
+
+
+#### d. Giải thích
+> - web.py - là một file chứa mã nguồn của ứng dụng Flask. Nó được sử dụng để xây dựng một trang web cho phép người dùng giao tiếp với chatbot và có các tính năng như đăng nhập, đăng ký, lịch sử tin nhắn và quản lý tin nhắn của người dùng. Nó sử dụng Flask, Flask-SocketIO và các module khác để hoạt động. 
+> - requirements.txt - là một tập tin chứa các thư viện (library) cần thiết để cài đặt và chạy một dự án phần mềm.
+> - Chatbot.py - chứa code để tạo một Chatbot. Nó đọc dữ liệu đã được lưu trữ trong file words.pkl và classes.pkl, và load mô hình đã huấn luyện từ file chatbot_model.h5. Nó sử dụng các hàm clean_up_sentence, bag_of_word và predict_class để xử lý câu văn đầu vào và dự đoán nhãn của câu đó. Sau đó, nó sử dụng hàm get_response để tìm kiếm và trả lại một câu trả lời từ cơ sở dữ liệu.
+> - training.py - là file được sử dụng để huấn luyện một mô hình chatbot để trả lời câu hỏi. Kết quả huấn luyện được lưu trữ và mô hình được lưu lại để sử dụng trong tương lai.
+> - db.py - là file chứa các hàm để truy cập vào cơ sở dữ liệu MongoDB.
+> - handle.py - file này đóng vai trò là một module giúp quản lý, lưu trữ, tìm kiếm và xử lý dữ liệu trong cơ sở dữ liệu của chương trình.
