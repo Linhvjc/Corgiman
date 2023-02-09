@@ -4,7 +4,7 @@
 1. [English - Tiếng Anh](#english)
 2. [Vietnamese - Tiếng Việt](#vietnam)
 
-### English (Tiếng Anh) <a name="english"></a>
+### 1. English (Tiếng Anh) <a name="english"></a>
 #### a. Introduction
 Introducing Corgiman, the simple yet efficient chatbot designed to answer your questions with ease. Built using the Flask framework and utilizing MongoDB for data storage, Corgiman is the perfect tool for those looking for a fun and engaging conversation. Despite its simplicity, this project is a great opportunity to practice and showcase what has been learned in the field of chatbot development. So sit back, ask away, and enjoy the conversation with Corgiman!
 
@@ -78,7 +78,7 @@ python web.py
 
 
 
-### Vietnamese (Tiếng Việt) <a name="vietnam"></a>
+### 2. Vietnamese (Tiếng Việt) <a name="vietnam"></a>
 #### a. Giới thiệu
 Giới thiệu đến Corgiman, chatbot đơn giản nhưng hiệu quả dùng để trả lời các câu hỏi của bạn một cách dễ dàng. Được xây dựng bằng Flask và sử dụng MongoDB để lưu trữ dữ liệu, Corgiman là công cụ hoàn hảo cho những người muốn trò chuyện vui vẻ và xả stress. Mặc dù đơn giản, dự án này là cơ hội tuyệt vời để tôi luyện tập và trình bày những gì đã học trong lĩnh vực trí tuệ nhân tạo. Hãy ngồi yên và tận hưởng cuộc trò chuyện với Corgiman!
 
