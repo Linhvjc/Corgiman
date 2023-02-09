@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # connect database
-from modules.db import train_table
+from db import train_table
 
 import nltk
 from nltk.stem import WordNetLemmatizer     #verify the same word
@@ -39,7 +39,7 @@ def bag_of_word(sentence):
 def predict_class(sentence):
     bow = bag_of_word(sentence)
     res = model.predict(np.array([bow]))[0];
-    # print("res: " + str(res)) 
+    # print("res: " + str(res)) # Prediction rate
     ERROR_THRESHOLD = 0.25
     results = [[i, r] for i,r in enumerate(res) if r > ERROR_THRESHOLD] # => result = the value > 0.25
     results.sort(key = lambda x: x[1], reverse=True) # get the highest value [[2, 0.9970567]]
@@ -53,7 +53,7 @@ def predict_class(sentence):
     else:
         for r in results:
             return_list.append({'intent': classes[r[0]], 'probability': str(r[1])}) # r[0] is index, r[1] is value.
-            #example: [{'intent': 'greetings', 'probability': '0.9970567'}]
+            # example: [{'intent': 'greetings', 'probability': '0.9970567'}]
     return return_list      # result list
 
 def get_response(intents_list, intents_json):
@@ -75,4 +75,4 @@ def chat(message):
     return res
 
 if __name__ == '__main__':
-    chat('hello')
+    chat(input(''))
