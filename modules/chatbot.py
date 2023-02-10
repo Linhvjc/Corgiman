@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # connect database
-from db import train_table
+from modules.db import train_table
 
 import nltk
 from nltk.stem import WordNetLemmatizer     #verify the same word
