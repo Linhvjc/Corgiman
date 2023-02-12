@@ -8,6 +8,12 @@
 #### a. Introduction
 Introducing Corgiman, the simple yet efficient chatbot designed to answer your questions with ease. Built using the Flask framework and utilizing MongoDB for data storage, Corgiman is the perfect tool for those looking for a fun and engaging conversation. Despite its simplicity, this project is a great opportunity to practice and showcase what has been learned in the field of chatbot development. So sit back, ask away, and enjoy the conversation with Corgiman!
 
+#### Demo
+<div align="center">
+<img src="https://user-images.githubusercontent.com/93339285/218291268-989cd9c8-3bfd-49b8-9cd5-b1defa99ee3c.gif" alt="">
+
+</div>
+
 #### b. Key Features
 > - Utilize dynamic training data for improved performance
 > - Experience real-time communication through messaging
@@ -81,6 +87,12 @@ python web.py
 ### 2. Vietnamese (Tiếng Việt) <a name="vietnam"></a>
 #### a. Giới thiệu
 Giới thiệu đến Corgiman, chatbot đơn giản nhưng hiệu quả dùng để trả lời các câu hỏi của bạn một cách dễ dàng. Được xây dựng bằng Flask và sử dụng MongoDB để lưu trữ dữ liệu, Corgiman là công cụ hoàn hảo cho những người muốn trò chuyện vui vẻ và xả stress. Mặc dù đơn giản, dự án này là cơ hội tuyệt vời để tôi luyện tập và trình bày những gì đã học trong lĩnh vực trí tuệ nhân tạo. Hãy ngồi yên và tận hưởng cuộc trò chuyện với Corgiman!
+
+#### Demo
+<div align="center">
+<img src="https://user-images.githubusercontent.com/93339285/218291268-989cd9c8-3bfd-49b8-9cd5-b1defa99ee3c.gif" alt="">
+
+</div>
 
 #### b. Các tính năng chính
 > - Sử dụng dữ liệu đào tạo linh hoạt để cải thiện hiệu suất
